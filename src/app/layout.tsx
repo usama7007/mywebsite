@@ -20,6 +20,8 @@ export const metadata: Metadata = {
   description: "Personal website with blog, books, and more by Usama.",
 };
 
+import SupabaseProvider from "@/components/providers/supabase-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,8 +32,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        <SupabaseProvider>
+          <Navbar />
+          {children}
+        </SupabaseProvider>
       </body>
     </html>
   );

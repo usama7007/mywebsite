@@ -1,15 +1,13 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { createClient } from '@/utils/supabase/server'
+import { createClient, isAdmin as checkAdmin } from '@/utils/supabase/server'
 
 export async function createBook(formData: FormData) {
     const supabase = await createClient()
-    const { data: { session } } = await supabase.auth.getSession();
 
     // Verify admin status
-    const isAdmin = session?.user?.email && session.user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-    if (!isAdmin) {
+    if (!await checkAdmin()) {
         throw new Error('Unauthorized');
     }
 
@@ -54,11 +52,9 @@ export async function createBook(formData: FormData) {
 
 export async function deleteBook(formData: FormData) {
     const supabase = await createClient()
-    const { data: { session } } = await supabase.auth.getSession();
 
     // Verify admin status
-    const isAdmin = session?.user?.email && session.user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-    if (!isAdmin) {
+    if (!await checkAdmin()) {
         throw new Error('Unauthorized');
     }
 

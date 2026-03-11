@@ -1,15 +1,14 @@
-import { createClient } from '@/utils/supabase/server';
+import { createClient, isAdmin as checkAdmin } from '@/utils/supabase/server';
 import { createPost, deletePost } from './actions';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Blog() {
-    let session = null;
     let posts: any[] = [];
     try {
         const supabase = await createClient();
-        const { data } = await supabase.auth.getSession();
-        session = data.session;
+        const { data } = await supabase.auth.getUser();
+        const user = data.user;
 
         const { data: postsData, error } = await supabase
             .from('posts')
@@ -25,7 +24,7 @@ export default async function Blog() {
         console.error('Supabase client error:', e);
     }
 
-    const isAdmin = session?.user?.email && session.user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+    const isAdmin = await checkAdmin();
 
     return (
         <div style={{ minHeight: 'calc(100vh - 64px)', background: 'linear-gradient(150deg, #f8f9fc 0%, #eef2ff 60%, #f8f9fc 100%)', padding: '4rem 1.5rem' }}>

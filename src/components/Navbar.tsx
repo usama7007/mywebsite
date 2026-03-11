@@ -3,11 +3,11 @@ import { createClient } from '@/utils/supabase/server';
 import { logout } from '@/app/login/actions';
 
 export default async function Navbar() {
-  let session = null;
+  let user = null;
   try {
     const supabase = await createClient();
-    const { data } = await supabase.auth.getSession();
-    session = data.session;
+    const { data } = await supabase.auth.getUser();
+    user = data.user;
   } catch (e) {
     console.error('Supabase client error:', e);
   }
@@ -46,7 +46,7 @@ export default async function Navbar() {
             <Link href="/books" className="nav-link">Books</Link>
             <Link href="/about" className="nav-link">About</Link>
 
-            {session ? (
+            {user ? (
               <form action={logout}>
                 <button type="submit" className="nav-logout">
                   Logout

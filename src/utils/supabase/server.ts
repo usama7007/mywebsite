@@ -27,3 +27,16 @@ export async function createClient() {
         }
     )
 }
+
+export async function isAdmin() {
+    const supabase = await createClient()
+    try {
+        const { data: { user } } = await supabase.auth.getUser()
+        const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL?.toLowerCase().trim()
+        const userEmail = user?.email?.toLowerCase().trim()
+        
+        return !!(userEmail && adminEmail && userEmail === adminEmail)
+    } catch {
+        return false
+    }
+}

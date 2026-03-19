@@ -81,6 +81,7 @@ export default async function Blog() {
                                     type="text"
                                     name="title"
                                     required
+                                    dir="auto"
                                     placeholder="Post title..."
                                     style={{
                                         width: '100%',
@@ -101,6 +102,7 @@ export default async function Blog() {
                                 <textarea
                                     name="content"
                                     required
+                                    dir="auto"
                                     rows={4}
                                     placeholder="Write your post..."
                                     style={{
@@ -167,10 +169,10 @@ export default async function Blog() {
                                 transition: 'box-shadow 0.15s',
                             }}>
                                 <div style={{ flex: 1 }}>
-                                    <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#0f172a', margin: '0 0 0.6rem' }}>
+                                    <h3 dir="auto" style={{ fontSize: '1.2rem', fontWeight: 700, color: '#0f172a', margin: '0 0 0.6rem' }}>
                                         {post.title}
                                     </h3>
-                                    <p style={{ color: '#475569', lineHeight: 1.75, margin: '0 0 1rem', whiteSpace: 'pre-wrap' }}>
+                                    <p dir="auto" style={{ color: '#475569', lineHeight: 1.75, margin: '0 0 1rem', whiteSpace: 'pre-wrap' }}>
                                         {post.content}
                                     </p>
                                     <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 500 }}>

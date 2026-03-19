@@ -83,6 +83,7 @@ export default async function Books() {
                                         type="text"
                                         name="title"
                                         required
+                                        dir="auto"
                                         placeholder="Book title..."
                                         style={{
                                             width: '100%',
@@ -104,6 +105,7 @@ export default async function Books() {
                                         type="text"
                                         name="author"
                                         required
+                                        dir="auto"
                                         placeholder="Author name..."
                                         style={{
                                             width: '100%',
@@ -125,6 +127,7 @@ export default async function Books() {
                                 <textarea
                                     name="description"
                                     rows={2}
+                                    dir="auto"
                                     placeholder="Brief description..."
                                     style={{
                                         width: '100%',
@@ -224,14 +227,14 @@ export default async function Books() {
 
                                 {/* Info */}
                                 <div style={{ padding: '1.1rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                                    <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', margin: '0 0 0.25rem', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as const }}>
+                                    <h3 dir="auto" style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', margin: '0 0 0.25rem', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as const }}>
                                         {book.title}
                                     </h3>
-                                    <p style={{ fontSize: '0.8rem', fontWeight: 500, color: '#8b5cf6', margin: '0 0 0.6rem' }}>
+                                    <p dir="auto" style={{ fontSize: '0.8rem', fontWeight: 500, color: '#8b5cf6', margin: '0 0 0.6rem' }}>
                                         {book.author}
                                     </p>
                                     {book.description && (
-                                        <p style={{ fontSize: '0.8rem', color: '#64748b', lineHeight: 1.6, margin: 0, flex: 1, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' as const }}>
+                                        <p dir="auto" style={{ fontSize: '0.8rem', color: '#64748b', lineHeight: 1.6, margin: 0, flex: 1, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' as const }}>
                                             {book.description}
                                         </p>
                                     )}

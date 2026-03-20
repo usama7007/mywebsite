@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -10,9 +11,22 @@ export default function Home() {
         padding: '5rem 1.5rem 4rem',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         gap: '1.5rem',
+        textAlign: 'center',
       }}>
+        {/* Logo */}
+        <div style={{ marginBottom: '0.5rem' }}>
+          <Image
+            src="/logo.png"
+            alt="نادي البراغماتيين العرب"
+            width={140}
+            height={140}
+            style={{ objectFit: 'contain' }}
+            priority
+          />
+        </div>
+
         {/* Badge */}
         <span style={{
           display: 'inline-flex',
@@ -26,47 +40,48 @@ export default function Home() {
           fontWeight: 600,
           letterSpacing: '0.04em',
           border: '1px solid #c7d2fe',
+          fontFamily: "'Noto Sans Arabic', sans-serif",
         }}>
-          ✦ Welcome to my corner of the internet
+          ✦ مرحباً بكم في نادي البراغماتيين العرب
         </span>
 
         {/* Headline */}
         <h1 style={{
-          fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+          fontSize: 'clamp(2.2rem, 6vw, 3.8rem)',
           fontWeight: 800,
-          lineHeight: 1.1,
-          letterSpacing: '-0.03em',
+          lineHeight: 1.2,
+          letterSpacing: '-0.02em',
           color: '#0f172a',
-          maxWidth: 700,
+          maxWidth: 760,
           margin: 0,
+          fontFamily: "'Noto Sans Arabic', sans-serif",
+          direction: 'rtl',
         }}>
-          Hi, I&apos;m{' '}
           <span style={{
             background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}>
-            Usama
+            نادي البراغماتيين العرب
           </span>
-          .{' '}
-          <br />
-          I write, read, and build things.
         </h1>
 
         {/* Subheading */}
         <p style={{
           fontSize: '1.15rem',
           color: '#64748b',
-          maxWidth: 560,
-          lineHeight: 1.75,
+          maxWidth: 620,
+          lineHeight: 1.9,
           margin: 0,
+          fontFamily: "'Noto Sans Arabic', sans-serif",
+          direction: 'rtl',
         }}>
-          Software engineer, lifelong learner, and occasional blogger. I share my thoughts on technology, books I love, and the ideas that keep me curious.
+          منصة عربية تجمع المهتمين بالفلسفة البراغماتية — ننشر المقالات، نتداول الأفكار، ونعرض الكتب التي نقرأها.
         </p>
 
         {/* CTA Buttons */}
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.5rem', justifyContent: 'center' }}>
           <Link
             href="/blog"
             style={{
@@ -78,10 +93,10 @@ export default function Home() {
               background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
               textDecoration: 'none',
               boxShadow: '0 4px 15px rgba(99,102,241,0.35)',
-              transition: 'transform 0.15s, box-shadow 0.15s',
+              fontFamily: "'Noto Sans Arabic', sans-serif",
             }}
           >
-            Read the Blog →
+            اقرأ المقالات →
           </Link>
           <Link
             href="/about"
@@ -95,10 +110,10 @@ export default function Home() {
               textDecoration: 'none',
               border: '1px solid #e2e8f0',
               boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
-              transition: 'all 0.15s',
+              fontFamily: "'Noto Sans Arabic', sans-serif",
             }}
           >
-            About Me
+            عن النادي
           </Link>
         </div>
       </section>
@@ -115,24 +130,24 @@ export default function Home() {
         {[
           {
             icon: '✍️',
-            title: 'Blog',
-            desc: 'Essays, thoughts, and ideas on software, learning, and life.',
+            title: 'المقالات',
+            desc: 'مقالات وأفكار ينشرها أعضاء النادي حول الفلسفة والفكر والواقع.',
             href: '/blog',
             color: '#6366f1',
             bg: '#eef2ff',
           },
           {
             icon: '📚',
-            title: 'Books',
-            desc: 'A curated shelf of books that have shaped how I think.',
+            title: 'الكتب',
+            desc: 'قائمة الكتب التي يقرأها أعضاء النادي ويوصون بها.',
             href: '/books',
             color: '#8b5cf6',
             bg: '#f5f3ff',
           },
           {
-            icon: '👤',
-            title: 'About',
-            desc: 'Learn more about who I am, what I do, and what drives me.',
+            icon: '🏛️',
+            title: 'عن النادي',
+            desc: 'تعرّف على نادي البراغماتيين العرب، رسالته، وقيمه الفكرية.',
             href: '/about',
             color: '#0ea5e9',
             bg: '#f0f9ff',
@@ -150,6 +165,7 @@ export default function Home() {
               textDecoration: 'none',
               boxShadow: '0 1px 4px rgba(0,0,0,0.05)',
               transition: 'transform 0.15s, box-shadow 0.15s',
+              direction: 'rtl',
             }}
           >
             <div style={{
@@ -165,10 +181,10 @@ export default function Home() {
             }}>
               {icon}
             </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a', margin: '0 0 0.4rem' }}>{title}</h3>
-            <p style={{ fontSize: '0.9rem', color: '#64748b', margin: 0, lineHeight: 1.65 }}>{desc}</p>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a', margin: '0 0 0.4rem', fontFamily: "'Noto Sans Arabic', sans-serif" }}>{title}</h3>
+            <p style={{ fontSize: '0.9rem', color: '#64748b', margin: 0, lineHeight: 1.75, fontFamily: "'Noto Sans Arabic', sans-serif" }}>{desc}</p>
             <span style={{ display: 'inline-block', marginTop: '1rem', fontSize: '0.875rem', fontWeight: 600, color }}>
-              Explore →
+              استكشف ←
             </span>
           </Link>
         ))}

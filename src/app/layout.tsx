@@ -22,8 +22,8 @@ const notoSansArabic = Noto_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "Usama — Personal Website",
-  description: "Personal website with blog, books, and more by Usama.",
+  title: "نادي البراغماتيين العرب",
+  description: "نادي البراغماتيين العرب — منصة لنشر المقالات والأفكار وعرض الكتب.",
 };
 
 import SupabaseProvider from "@/components/providers/supabase-provider";

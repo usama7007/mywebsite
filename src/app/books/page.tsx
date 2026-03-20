@@ -32,7 +32,7 @@ export default async function Books() {
             <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
                 {/* Header */}
-                <div style={{ marginBottom: '3rem' }}>
+                <div style={{ marginBottom: '3rem', direction: 'rtl' }}>
                     <span style={{
                         display: 'inline-block',
                         padding: '0.3rem 0.9rem',
@@ -43,8 +43,9 @@ export default async function Books() {
                         fontWeight: 600,
                         border: '1px solid #ddd6fe',
                         marginBottom: '1rem',
+                        fontFamily: "'Noto Sans Arabic', sans-serif",
                     }}>
-                        📚 Reading List
+                        📚 قائمة القراءة
                     </span>
                     <h1 style={{
                         fontSize: 'clamp(2rem, 5vw, 3rem)',
@@ -52,11 +53,12 @@ export default async function Books() {
                         letterSpacing: '-0.03em',
                         color: '#0f172a',
                         margin: '0 0 0.75rem',
+                        fontFamily: "'Noto Sans Arabic', sans-serif",
                     }}>
-                        Bookshelf
+                        الكتب
                     </h1>
-                    <p style={{ color: '#64748b', fontSize: '1.05rem', margin: 0 }}>
-                        Books that have shaped how I think and see the world.
+                    <p style={{ color: '#64748b', fontSize: '1.05rem', margin: 0, fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                        كتب يقرأها أعضاء النادي ويوصون بها.
                     </p>
                 </div>
 
@@ -70,21 +72,21 @@ export default async function Books() {
                         marginBottom: '2.5rem',
                         boxShadow: '0 1px 8px rgba(0,0,0,0.05)',
                     }}>
-                        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a', margin: '0 0 1.25rem' }}>
-                            ➕ Add New Book
+                        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a', margin: '0 0 1.25rem', fontFamily: "'Noto Sans Arabic', sans-serif", direction: 'rtl' }}>
+                            ➕ إضافة كتاب
                         </h2>
                         <form action={createBook} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                 <div>
-                                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                                        Title
+                                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', letterSpacing: '0.05em', direction: 'rtl', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                        عنوان الكتاب
                                     </label>
                                     <input
                                         type="text"
                                         name="title"
                                         required
                                         dir="auto"
-                                        placeholder="Book title..."
+                                        placeholder="عنوان الكتاب..."
                                         style={{
                                             width: '100%',
                                             padding: '0.6rem 0.9rem',
@@ -98,15 +100,15 @@ export default async function Books() {
                                     />
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                                        Author
+                                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', letterSpacing: '0.05em', direction: 'rtl', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                        المؤلف
                                     </label>
                                     <input
                                         type="text"
                                         name="author"
                                         required
                                         dir="auto"
-                                        placeholder="Author name..."
+                                        placeholder="اسم المؤلف..."
                                         style={{
                                             width: '100%',
                                             padding: '0.6rem 0.9rem',
@@ -121,14 +123,14 @@ export default async function Books() {
                                 </div>
                             </div>
                             <div>
-                                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                                    Description
+                                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', letterSpacing: '0.05em', direction: 'rtl', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                    وصف مختصر
                                 </label>
                                 <textarea
                                     name="description"
                                     rows={2}
                                     dir="auto"
-                                    placeholder="Brief description..."
+                                    placeholder="وصف مختصر للكتاب..."
                                     style={{
                                         width: '100%',
                                         padding: '0.6rem 0.9rem',
@@ -143,8 +145,8 @@ export default async function Books() {
                                 />
                             </div>
                             <div>
-                                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                                    Cover Image
+                                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', letterSpacing: '0.05em', direction: 'rtl', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                    صورة الغلاف
                                 </label>
                                 <input
                                     type="file"
@@ -173,7 +175,7 @@ export default async function Books() {
                                         boxShadow: '0 2px 8px rgba(99,102,241,0.3)',
                                     }}
                                 >
-                                    Add Book
+                                    إضافة الكتاب
                                 </button>
                             </div>
                         </form>
@@ -191,7 +193,7 @@ export default async function Books() {
                         color: '#94a3b8',
                         fontSize: '1rem',
                     }}>
-                        No books on the shelf yet. Add some! 📖
+                        لا توجد كتب بعد. أضف كتاباً! 📖
                     </div>
                 ) : (
                     <div style={{
@@ -255,7 +257,7 @@ export default async function Books() {
                                                     cursor: 'pointer',
                                                 }}
                                             >
-                                                Delete
+                                                حذف
                                             </button>
                                         </form>
                                     )}

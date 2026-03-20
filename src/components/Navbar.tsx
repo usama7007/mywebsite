@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { createClient } from '@/utils/supabase/server';
 import { logout } from '@/app/login/actions';
 
@@ -28,33 +29,47 @@ export default async function Navbar() {
 
           {/* Logo/Brand */}
           <Link href="/" style={{
-            fontSize: '1.2rem',
-            fontWeight: 800,
-            background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            letterSpacing: '-0.02em',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.6rem',
             textDecoration: 'none',
           }}>
-            Usama
+            <Image
+              src="/logo.png"
+              alt="نادي البراغماتيين العرب"
+              width={44}
+              height={44}
+              style={{ borderRadius: 8, objectFit: 'contain' }}
+            />
+            <span style={{
+              fontSize: '1rem',
+              fontWeight: 800,
+              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              letterSpacing: '-0.01em',
+              fontFamily: "'Noto Sans Arabic', sans-serif",
+            }}>
+              نادي البراغماتيين العرب
+            </span>
           </Link>
 
           {/* Nav Links */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-            <Link href="/blog" className="nav-link">Blog</Link>
-            <Link href="/books" className="nav-link">Books</Link>
-            <Link href="/about" className="nav-link">About</Link>
+            <Link href="/blog" className="nav-link">مقالات</Link>
+            <Link href="/books" className="nav-link">كتب</Link>
+            <Link href="/about" className="nav-link">عن النادي</Link>
 
             {user ? (
               <form action={logout}>
                 <button type="submit" className="nav-logout">
-                  Logout
+                  خروج
                 </button>
               </form>
             ) : (
               <Link href="/login" className="nav-login">
-                Login
+                دخول
               </Link>
             )}
           </div>

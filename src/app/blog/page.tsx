@@ -31,7 +31,7 @@ export default async function Blog() {
             <div style={{ maxWidth: 780, margin: '0 auto' }}>
 
                 {/* Header */}
-                <div style={{ marginBottom: '3rem' }}>
+                <div style={{ marginBottom: '3rem', direction: 'rtl' }}>
                     <span style={{
                         display: 'inline-block',
                         padding: '0.3rem 0.9rem',
@@ -42,8 +42,9 @@ export default async function Blog() {
                         fontWeight: 600,
                         border: '1px solid #c7d2fe',
                         marginBottom: '1rem',
+                        fontFamily: "'Noto Sans Arabic', sans-serif",
                     }}>
-                        ✍️ Writing
+                        ✍️ كتابة
                     </span>
                     <h1 style={{
                         fontSize: 'clamp(2rem, 5vw, 3rem)',
@@ -51,11 +52,12 @@ export default async function Blog() {
                         letterSpacing: '-0.03em',
                         color: '#0f172a',
                         margin: '0 0 0.75rem',
+                        fontFamily: "'Noto Sans Arabic', sans-serif",
                     }}>
-                        Blog
+                        المقالات
                     </h1>
-                    <p style={{ color: '#64748b', fontSize: '1.05rem', margin: 0 }}>
-                        Thoughts, essays, and ideas I&apos;ve been working through.
+                    <p style={{ color: '#64748b', fontSize: '1.05rem', margin: 0, fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                        مقالات وأفكار ينشرها أعضاء نادي البراغماتيين العرب.
                     </p>
                 </div>
 
@@ -69,20 +71,20 @@ export default async function Blog() {
                         marginBottom: '2.5rem',
                         boxShadow: '0 1px 8px rgba(0,0,0,0.05)',
                     }}>
-                        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a', margin: '0 0 1.25rem' }}>
-                            ✏️ New Post
+                        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a', margin: '0 0 1.25rem', fontFamily: "'Noto Sans Arabic', sans-serif", direction: 'rtl' }}>
+                            ✏️ مقال جديد
                         </h2>
                         <form action={createPost} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <div>
-                                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                                    Title
+                                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', letterSpacing: '0.05em', direction: 'rtl', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                    العنوان
                                 </label>
                                 <input
                                     type="text"
                                     name="title"
                                     required
                                     dir="auto"
-                                    placeholder="Post title..."
+                                    placeholder="عنوان المقال..."
                                     style={{
                                         width: '100%',
                                         padding: '0.6rem 0.9rem',
@@ -96,15 +98,15 @@ export default async function Blog() {
                                 />
                             </div>
                             <div>
-                                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                                    Content
+                                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem', letterSpacing: '0.05em', direction: 'rtl', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                    المحتوى
                                 </label>
                                 <textarea
                                     name="content"
                                     required
                                     dir="auto"
                                     rows={4}
-                                    placeholder="Write your post..."
+                                    placeholder="اكتب مقالك هنا..."
                                     style={{
                                         width: '100%',
                                         padding: '0.6rem 0.9rem',
@@ -133,7 +135,7 @@ export default async function Blog() {
                                         boxShadow: '0 2px 8px rgba(99,102,241,0.3)',
                                     }}
                                 >
-                                    Publish Post
+                                    نشر المقال
                                 </button>
                             </div>
                         </form>
@@ -152,7 +154,7 @@ export default async function Blog() {
                             color: '#94a3b8',
                             fontSize: '1rem',
                         }}>
-                            No posts yet. Check back soon! 📝
+                            لا توجد مقالات بعد. عد قريباً! 📝
                         </div>
                     ) : (
                         posts.map((post) => (
@@ -195,7 +197,7 @@ export default async function Blog() {
                                                 cursor: 'pointer',
                                             }}
                                         >
-                                            Delete
+                                            حذف
                                         </button>
                                     </form>
                                 )}

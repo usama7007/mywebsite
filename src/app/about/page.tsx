@@ -6,7 +6,7 @@ export default function About() {
             <div style={{ maxWidth: 900, margin: '0 auto' }}>
 
                 {/* Header */}
-                <div style={{ marginBottom: '3rem' }}>
+                <div style={{ marginBottom: '3rem', direction: 'rtl' }}>
                     <span style={{
                         display: 'inline-block',
                         padding: '0.3rem 0.9rem',
@@ -17,8 +17,9 @@ export default function About() {
                         fontWeight: 600,
                         border: '1px solid #c7d2fe',
                         marginBottom: '1.25rem',
+                        fontFamily: "'Noto Sans Arabic', sans-serif",
                     }}>
-                        About Me
+                        عن النادي
                     </span>
                     <h1 style={{
                         fontSize: 'clamp(2rem, 5vw, 3rem)',
@@ -26,16 +27,17 @@ export default function About() {
                         letterSpacing: '-0.03em',
                         color: '#0f172a',
                         margin: 0,
-                        lineHeight: 1.15,
+                        lineHeight: 1.2,
+                        fontFamily: "'Noto Sans Arabic', sans-serif",
                     }}>
-                        Hi, I&apos;m{' '}
+                        نادي{' '}
                         <span style={{
                             background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             backgroundClip: 'text',
                         }}>
-                            Usama
+                            البراغماتيين العرب
                         </span>
                     </h1>
                 </div>
@@ -50,13 +52,13 @@ export default function About() {
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
                 }}>
-                    {/* Image */}
-                    <div style={{ position: 'relative', minHeight: 360, background: '#f1f5f9' }}>
+                    {/* Logo Image */}
+                    <div style={{ position: 'relative', minHeight: 360, background: 'linear-gradient(135deg, #eef2ff, #f5f3ff)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Image
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
-                            alt="Usama's profile picture"
+                            src="/logo.png"
+                            alt="شعار نادي البراغماتيين العرب"
                             fill
-                            className="object-cover"
+                            className="object-contain"
                             sizes="(max-width: 768px) 100vw, 40vw"
                             priority
                         />
@@ -64,29 +66,29 @@ export default function About() {
                         <div style={{
                             position: 'absolute',
                             inset: 0,
-                            background: 'linear-gradient(to top, rgba(99,102,241,0.15) 0%, transparent 60%)',
+                            background: 'linear-gradient(to top, rgba(99,102,241,0.1) 0%, transparent 60%)',
                         }} />
                     </div>
 
                     {/* Content */}
-                    <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', direction: 'rtl' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-                            <p style={{ fontSize: '1.05rem', color: '#334155', lineHeight: 1.8, margin: 0 }}>
-                                I&apos;m a passionate software engineer and lifelong learner. I specialize in building robust, user-friendly web applications using modern technologies like React, Next.js, and Node.
+                            <p style={{ fontSize: '1.05rem', color: '#334155', lineHeight: 1.9, margin: 0, fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                نادي البراغماتيين العرب هو مجتمع فكري يجمع العرب المهتمين بالفلسفة البراغماتية — الفلسفة التي ترى أن قيمة الأفكار تُقاس بنتائجها العملية في الواقع.
                             </p>
-                            <p style={{ fontSize: '1.05rem', color: '#334155', lineHeight: 1.8, margin: 0 }}>
-                                When I&apos;m not coding, you can find me reading a good book, exploring new technologies, or writing on my blog to share insights and personal projects with the community.
+                            <p style={{ fontSize: '1.05rem', color: '#334155', lineHeight: 1.9, margin: 0, fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                هنا يشارك الأعضاء مقالاتهم وأفكارهم، ويعرضون الكتب التي يقرأونها، ويتناقشون حول قضايا الفكر والمجتمع من منظور واقعي وعملي.
                             </p>
                         </div>
 
-                        {/* Skills */}
+                        {/* Club Values */}
                         <div style={{ marginTop: '2rem' }}>
-                            <p style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.75rem' }}>
-                                Things I work with
+                            <p style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.75rem', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                قيم النادي
                             </p>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                                {['React', 'Next.js', 'TypeScript', 'Node.js', 'Supabase', 'PostgreSQL'].map(skill => (
-                                    <span key={skill} style={{
+                                {['الواقعية', 'العملية', 'التجريب', 'النقد البنّاء', 'التفكير الحر', 'المعرفة التطبيقية'].map(value => (
+                                    <span key={value} style={{
                                         padding: '0.3rem 0.75rem',
                                         borderRadius: 8,
                                         background: '#f8fafc',
@@ -94,8 +96,9 @@ export default function About() {
                                         fontSize: '0.8rem',
                                         fontWeight: 500,
                                         color: '#475569',
+                                        fontFamily: "'Noto Sans Arabic', sans-serif",
                                     }}>
-                                        {skill}
+                                        {value}
                                     </span>
                                 ))}
                             </div>
@@ -104,7 +107,7 @@ export default function About() {
                         {/* CTA */}
                         <div style={{ marginTop: '2rem' }}>
                             <a
-                                href="mailto:hello@example.com"
+                                href="/blog"
                                 style={{
                                     display: 'inline-flex',
                                     alignItems: 'center',
@@ -117,9 +120,10 @@ export default function About() {
                                     fontSize: '0.9rem',
                                     textDecoration: 'none',
                                     boxShadow: '0 4px 12px rgba(99,102,241,0.3)',
+                                    fontFamily: "'Noto Sans Arabic', sans-serif",
                                 }}
                             >
-                                Get in touch ✉️
+                                اقرأ المقالات ✍️
                             </a>
                         </div>
                     </div>

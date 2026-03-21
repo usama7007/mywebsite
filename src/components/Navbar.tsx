@@ -35,7 +35,7 @@ export default async function Navbar() {
             textDecoration: 'none',
           }}>
             <Image
-              src="/logo.png"
+              src="/logo2.png"
               alt="نادي البراغماتيين العرب"
               width={44}
               height={44}

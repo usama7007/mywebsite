@@ -18,7 +18,7 @@ export default function Home() {
         {/* Logo */}
         <div style={{ marginBottom: '0.5rem' }}>
           <Image
-            src="/logo.png"
+            src="/logo2.png"
             alt="نادي البراغماتيين العرب"
             width={140}
             height={140}

@@ -55,7 +55,7 @@ export default function About() {
                     {/* Logo Image */}
                     <div style={{ position: 'relative', minHeight: 360, background: 'linear-gradient(135deg, #eef2ff, #f5f3ff)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Image
-                            src="/logo.png"
+                            src="/logo2.png"
                             alt="شعار نادي البراغماتيين العرب"
                             fill
                             className="object-contain"

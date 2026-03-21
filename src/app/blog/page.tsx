@@ -1,5 +1,6 @@
 import { createClient, isAdmin as checkAdmin } from '@/utils/supabase/server';
 import { createPost, deletePost } from './actions';
+import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
@@ -171,15 +172,22 @@ export default async function Blog() {
                                 transition: 'box-shadow 0.15s',
                             }}>
                                 <div style={{ flex: 1 }}>
-                                    <h3 dir="auto" style={{ fontSize: '1.2rem', fontWeight: 700, color: '#0f172a', margin: '0 0 0.6rem' }}>
-                                        {post.title}
+                                    <h3 dir="auto" style={{ fontSize: '1.2rem', fontWeight: 700, margin: '0 0 0.6rem' }}>
+                                        <Link href={`/blog/${post.id}`} style={{ color: '#0f172a', textDecoration: 'none' }}>
+                                            {post.title}
+                                        </Link>
                                     </h3>
-                                    <p dir="auto" style={{ color: '#475569', lineHeight: 1.75, margin: '0 0 1rem', whiteSpace: 'pre-wrap' }}>
+                                    <p dir="auto" style={{ color: '#475569', lineHeight: 1.75, margin: '0 0 1rem', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' as const }}>
                                         {post.content}
                                     </p>
-                                    <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 500 }}>
-                                        {new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                                    </span>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                        <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 500 }}>
+                                            {new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                        </span>
+                                        <Link href={`/blog/${post.id}`} style={{ fontSize: '0.85rem', fontWeight: 600, color: '#6366f1', textDecoration: 'none', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                            اقرأ المزيد ←
+                                        </Link>
+                                    </div>
                                 </div>
                                 {isAdmin && (
                                     <form action={deletePost} style={{ flexShrink: 0 }}>

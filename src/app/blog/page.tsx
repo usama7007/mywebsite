@@ -6,10 +6,11 @@ export const dynamic = 'force-dynamic';
 
 export default async function Blog() {
     let posts: any[] = [];
+    let user: any = null;
     try {
         const supabase = await createClient();
         const { data } = await supabase.auth.getUser();
-        const user = data.user;
+        user = data.user;
 
         const { data: postsData, error } = await supabase
             .from('posts')
@@ -62,8 +63,8 @@ export default async function Blog() {
                     </p>
                 </div>
 
-                {/* Admin Create Form */}
-                {isAdmin && (
+                {/* Create Form for logged in users */}
+                {user && (
                     <div style={{
                         background: '#fff',
                         border: '1px solid #e2e8f0',
@@ -182,8 +183,16 @@ export default async function Blog() {
                                     </p>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                         <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 500 }}>
-                                            {new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                            {new Date(post.created_at).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })}
                                         </span>
+                                        {post.author_email && (
+                                            <>
+                                                <span style={{ color: '#cbd5e1' }}>•</span>
+                                                <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 500, fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                                    بواسطة: {post.author_email}
+                                                </span>
+                                            </>
+                                        )}
                                         <Link href={`/blog/${post.id}`} style={{ fontSize: '0.85rem', fontWeight: 600, color: '#6366f1', textDecoration: 'none', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
                                             اقرأ المزيد ←
                                         </Link>

@@ -6,17 +6,20 @@ import { createClient, isAdmin as checkAdmin } from '@/utils/supabase/server'
 export async function createPost(formData: FormData) {
     const supabase = await createClient()
 
-    // Verify admin status
-    if (!await checkAdmin()) {
+    // Get the current user
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
         throw new Error('Unauthorized');
     }
 
     const title = formData.get('title') as string
     const content = formData.get('content') as string
+    const author_email = user.email
 
     const { error } = await supabase
         .from('posts')
-        .insert([{ title, content }])
+        .insert([{ title, content, author_email }])
 
     if (error) {
         console.error('Error creating post:', error);

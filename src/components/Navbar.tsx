@@ -68,9 +68,14 @@ export default async function Navbar() {
                 </button>
               </form>
             ) : (
-              <Link href="/login" className="nav-login">
-                دخول
-              </Link>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <Link href="/login" className="nav-login">
+                  دخول
+                </Link>
+                <Link href="/signup" className="nav-login" style={{ background: '#6366f1', color: '#fff', border: 'none' }}>
+                  حساب جديد
+                </Link>
+              </div>
             )}
           </div>
 

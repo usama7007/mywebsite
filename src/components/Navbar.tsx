@@ -62,11 +62,16 @@ export default async function Navbar() {
             <Link href="/about" className="nav-link">عن النادي</Link>
 
             {user ? (
-              <form action={logout}>
-                <button type="submit" className="nav-logout">
-                  خروج
-                </button>
-              </form>
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <Link href="/account" className="nav-link" style={{ background: '#f8fafc', padding: '0.4rem 0.8rem', borderRadius: 8, color: '#0f172a', fontWeight: 600 }}>
+                  حسابي
+                </Link>
+                <form action={logout}>
+                  <button type="submit" className="nav-logout">
+                    خروج
+                  </button>
+                </form>
+              </div>
             ) : (
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <Link href="/login" className="nav-login">

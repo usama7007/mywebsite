@@ -1,6 +1,7 @@
 import { createClient, isAdmin as checkAdmin } from '@/utils/supabase/server';
 import { createPost, deletePost } from './actions';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,6 +22,28 @@ export default async function Blog() {
             console.error('Error fetching posts:', JSON.stringify(error, null, 2));
         } else {
             posts = postsData || [];
+        }
+
+        // Fetch profiles for the authors
+        if (posts.length > 0) {
+            const emails = [...new Set(posts.map(p => p.author_email).filter(Boolean))] as string[];
+            if (emails.length > 0) {
+                const { data: profiles } = await supabase
+                    .from('profiles')
+                    .select('email, avatar_url')
+                    .in('email', emails);
+                
+                if (profiles) {
+                    const profilesMap: Record<string, string> = {};
+                    profiles.forEach(p => {
+                        if (p.avatar_url) profilesMap[p.email] = p.avatar_url;
+                    });
+                    posts = posts.map(p => ({
+                        ...p,
+                        author_avatar: profilesMap[p.author_email] || null
+                    }));
+                }
+            }
         }
     } catch (e) {
         console.error('Supabase client error:', e);
@@ -188,9 +211,21 @@ export default async function Blog() {
                                         {post.author_email && (
                                             <>
                                                 <span style={{ color: '#cbd5e1' }}>•</span>
-                                                <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 500, fontFamily: "'Noto Sans Arabic', sans-serif" }}>
-                                                    بواسطة: {post.author_email}
-                                                </span>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                    {post.author_avatar ? (
+                                                        <Image 
+                                                            src={post.author_avatar} 
+                                                            alt="Author Avatar" 
+                                                            width={24} 
+                                                            height={24} 
+                                                            style={{ borderRadius: '50%', objectFit: 'cover' }} 
+                                                        />
+                                                    ) : (
+                                                        <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                            <span style={{ fontSize: '0.7rem' }}>👤</span>
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </>
                                         )}
                                         <Link href={`/blog/${post.id}`} style={{ fontSize: '0.85rem', fontWeight: 600, color: '#6366f1', textDecoration: 'none', fontFamily: "'Noto Sans Arabic', sans-serif" }}>

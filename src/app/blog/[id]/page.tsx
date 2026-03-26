@@ -1,6 +1,7 @@
 import { createClient, isAdmin as checkAdmin } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { deletePost } from '../actions';
 
 export const dynamic = 'force-dynamic';
@@ -18,6 +19,18 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
 
     if (error || !post) {
         notFound();
+    }
+
+    let authorAvatarUrl = null;
+    if (post.author_email) {
+        const { data: profile } = await supabase
+            .from('profiles')
+            .select('avatar_url')
+            .eq('email', post.author_email)
+            .single();
+        if (profile?.avatar_url) {
+            authorAvatarUrl = profile.avatar_url;
+        }
     }
 
     const isAdmin = await checkAdmin();
@@ -80,8 +93,28 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                         )}
                     </div>
                     
-                    <div style={{ marginBottom: '2.5rem', color: '#64748b', fontSize: '0.9rem', fontWeight: 500 }}>
-                        {new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2.5rem', color: '#64748b', fontSize: '0.9rem', fontWeight: 500 }}>
+                        <span>{new Date(post.created_at).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        {post.author_email && (
+                            <>
+                                <span>•</span>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                                    {authorAvatarUrl ? (
+                                        <Image 
+                                            src={authorAvatarUrl} 
+                                            alt="Author Avatar" 
+                                            width={32} 
+                                            height={32} 
+                                            style={{ borderRadius: '50%', objectFit: 'cover' }} 
+                                        />
+                                    ) : (
+                                        <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                            <span style={{ fontSize: '0.9rem' }}>👤</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </>
+                        )}
                     </div>
 
                     <div dir="auto" style={{

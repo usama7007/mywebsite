@@ -30,17 +30,20 @@ export default async function Blog() {
             if (emails.length > 0) {
                 const { data: profiles } = await supabase
                     .from('profiles')
-                    .select('email, avatar_url')
+                    .select('email, avatar_url, username')
                     .in('email', emails);
                 
                 if (profiles) {
-                    const profilesMap: Record<string, string> = {};
+                    const avatarMap: Record<string, string> = {};
+                    const usernameMap: Record<string, string> = {};
                     profiles.forEach(p => {
-                        if (p.avatar_url) profilesMap[p.email] = p.avatar_url;
+                        if (p.avatar_url) avatarMap[p.email] = p.avatar_url;
+                        if (p.username) usernameMap[p.email] = p.username;
                     });
                     posts = posts.map(p => ({
                         ...p,
-                        author_avatar: profilesMap[p.author_email] || null
+                        author_avatar: avatarMap[p.author_email] || null,
+                        author_username: usernameMap[p.author_email] || null,
                     }));
                 }
             }
@@ -224,6 +227,11 @@ export default async function Blog() {
                                                         <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                                             <span style={{ fontSize: '0.7rem' }}>👤</span>
                                                         </div>
+                                                    )}
+                                                    {post.author_username && (
+                                                        <span style={{ fontSize: '0.8rem', color: '#475569', fontWeight: 600, fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                                            {post.author_username}
+                                                        </span>
                                                     )}
                                                 </div>
                                             </>

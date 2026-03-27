@@ -25,3 +25,29 @@ export async function updateAvatarUrl(avatarUrl: string) {
     revalidatePath('/blog');
 }
 
+export async function updateUsername(username: string) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+        throw new Error('Unauthorized');
+    }
+
+    const trimmed = username.trim();
+    if (!trimmed) {
+        throw new Error('Username cannot be empty');
+    }
+
+    const { error } = await supabase
+        .from('profiles')
+        .update({ username: trimmed })
+        .eq('id', user.id);
+
+    if (error) {
+        console.error('Error updating username:', error);
+        throw new Error('Failed to update username');
+    }
+
+    revalidatePath('/account');
+    revalidatePath('/blog');
+}

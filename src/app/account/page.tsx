@@ -1,6 +1,7 @@
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import AvatarUpload from '@/components/AvatarUpload';
+import UsernameInput from '@/components/UsernameInput';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,7 +16,7 @@ export default async function AccountPage() {
     // Try to get the profile
     let { data: profile } = await supabase
         .from('profiles')
-        .select('avatar_url, email')
+        .select('avatar_url, email, username')
         .eq('id', user.id)
         .single();
 
@@ -62,6 +63,10 @@ export default async function AccountPage() {
                                 {user.email}
                             </p>
                         </div>
+
+                        <div style={{ width: '100%', height: '1px', background: '#e2e8f0' }} />
+
+                        <UsernameInput initialUsername={profile?.username || null} />
 
                         <div style={{ width: '100%', height: '1px', background: '#e2e8f0' }} />
 
